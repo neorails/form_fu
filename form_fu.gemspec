@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name = 'form_fu'
-  s.version = '0.0.20080705'
+  s.version = '0.1'
   s.date = '2008-07-05'
   
   s.summary = "Allows easier rails form creation and processing"
@@ -16,26 +16,15 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'rails', ['>= 2.1']
 
-  # s.files = ["MIT-LICENSE",
-  #            "README",
-  #            "Rakefile",
-  #            "init.rb",
-  #            "lib/browser_detect/helper.rb",
-  #            "lib/headliner/helper.rb",
-  #            "lib/headliner/README",
-  #            "lib/javascripter/helper.rb",
-  #            "lib/javascripter/README",
-  #            "lib/styler/helper.rb",
-  #            "lib/styler/README",
-  #            "lib/view_fu/meta_helper.rb",
-  #            "lib/view_fu/tag_helper.rb",
-  #            "lib/view_fu.rb",
-  #            "rails/init.rb",
-  #            "view_fu.gemspec"]
-  # 
-  # s.test_files = ["test/browser_detect_test.rb",
-  #                 "test/headliner_test.rb",
-  #                 "test/styler_test.rb",
-  #                 "test/view_fu_test.rb"]
+  s.files = ["LICENSE",
+             "README",
+             "form_fu.gemspec",
+             "init.rb",
+             "lib/form_fu/form_builder.rb",
+             "lib/form_fu/helpers.rb",
+             "lib/form_fu.rb",
+             "rails/init.rb"]
+
+  s.test_files = ["test/form_fu_test.rb"]
 
 end
