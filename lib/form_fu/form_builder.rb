@@ -101,7 +101,7 @@ module FormFu
 
       if block_given?
         # concat to page if block was given
-        return concat(output_html, block.binding)
+        return @template.concat(output_html, block.binding)
       else
         # otherwise return html directly
        return output_html
