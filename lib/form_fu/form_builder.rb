@@ -36,10 +36,10 @@ module FormFu
       # build radio choices html 
       choices_html = ""
       choices.each do |key, value|
-        radio_html = radio_button(field, value)+key
+        radio_html = @template.radio_button(field, value)+key
         
         # wrap radio html in a label (for easier selection)
-        choices_html << content_tag(:label, radio_html, :class => "radio-option")
+        choices_html << @template.content_tag(:label, radio_html, :class => "radio-option")
       end
       
       # wrap the radio-group with a label
@@ -90,8 +90,6 @@ module FormFu
           block_given? ? @template.capture(&block) : nil
       ].compact.join("\n"))
 
-      Rails.logger.debug "OUTPUTING LABEL FORMAT:\n\n#{output_html}\n\n"
-      
       if block_given?
         # concat to page if block was given
         return concat(output_html, block.binding)
