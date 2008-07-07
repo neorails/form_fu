@@ -1,6 +1,6 @@
 FormFu
 ======
-Form is a Rails plugin that enables you to easily build nice, tableless forms
+FormFu is a Rails plugin that enables you to easily build nice, tableless forms
 
 
 Maintainer Info
@@ -28,7 +28,7 @@ config.gem 'neorails-form_fu', :version => '>= 0.1',
 Usage
 ======
 
-  Create a Basic Form
+  Create a Basic Form for a Model
   <% build_form_for @widget do |f| %>
     <%= f.text_field :name %>
     <%= f.text_area :description %>
@@ -37,7 +37,16 @@ Usage
   
   --------
   
-  Set a label
+  Create Fields for a Model
+  <% build_fields_for @address do |a| %>
+    <%= a.text_field :street %>
+    <%= a.text_field :city %>
+    <%= a.select :state, State.to_select %>
+  <% end %>
+  
+  --------
+  
+  Set up a label
   <%= f.text_field :name, :label => "Enter Your Name" %>  
 
   --------
@@ -65,5 +74,13 @@ Usage
   <%= f.error_messages %>
                                  
   --------
+
+
+Try my other plugins
+======
+
+If you like FormFu, you'll *love* ViewFu. It will help you deal with Stylesheets, Javascripts, Page titles, and adds tons of useful view helper methods.
+https://github.com/neorails/view_fu
+
 
 Copyright (c) 2008 NeoRails.com, released under the MIT license

@@ -3,8 +3,8 @@ Gem::Specification.new do |s|
   s.version = '0.1'
   s.date = '2008-07-06'
   
-  s.summary = "Allows easier rails form creation and processing"
-  s.description = "ViewFu is a Rails plugin that provides all the miscellaneous View tasks. It's a combination of the functionality of Styler, Javascripter, and Headline (from Patrick Crowley, the.railsi.st) - along with additional tweaks such as providing commonly used View Helpers Methods."
+  s.summary = "Build Nice DRY Rails Forms"
+  s.description = "FormFu is a Rails plugin that enables you to easily build nice, tableless forms"
   
   s.authors = ['Tyler Crocker']
   s.email = 'neorails@gmail.com'
