@@ -7,7 +7,7 @@ module ActionView
   class Base #:nodoc:
     @@field_error_proc = Proc.new{ |html_tag, instance| "#{html_tag}" }
     cattr_accessor :field_error_proc
-  end
+  end 
 end
 
 # Add a to_select method to our ActiveRecord models
