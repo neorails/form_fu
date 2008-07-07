@@ -74,7 +74,10 @@ Usage
   <%= f.error_messages %>
                                  
   --------
-
+  
+  Access the originals form_for helpers (prepend _input to names)
+  <%= f.text_field_input :name %>
+  outputs only a text_field input tag
 
 Try my other plugins
 ======

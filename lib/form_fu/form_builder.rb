@@ -3,15 +3,17 @@ module FormFu
   # A form builder that produces tableless, lined-up forms.
   class FormBuilder < ActionView::Helpers::FormBuilder
     # automatically wrap all the standard formbuilder helpers
-     (field_helpers - %w(label hidden_field radio_button check_box text_area apply_form_for_options!)).each do |selector|
+     (field_helpers - %w(label hidden_field text_area select apply_form_for_options!)).each do |selector|
       src = <<-END_SRC
+        alias :#{selector}_input :#{selector} 
         def #{selector}(field, options = {}, &block)
           format_with_label(field, options.merge(:field_type => "#{selector}"), super(field, purge_custom_tags(options)), &block)
         end
       END_SRC
       class_eval src, __FILE__, __LINE__
     end
-
+    
+    alias :text_area_input :text_area
     def text_area(field, options = {}, &block)
       format_with_label(field, options.merge(:field_type => "text_area", :preserve => true), super(field, purge_custom_tags(options)), &block)
     end
@@ -36,7 +38,7 @@ module FormFu
       # build radio choices html 
       choices_html = ""
       choices.each do |key, value|
-        radio_html = radio_button(field, value)+key
+        radio_html = radio_button_input(field, value)+key
         
         # wrap radio html in a label (for easier selection)
         choices_html << @template.content_tag(:label, radio_html, :class => "radio-option")
@@ -47,6 +49,7 @@ module FormFu
     end
 
     # wrap the select helper
+    alias :select_input :select
     def select(field, choices, options={}, &block)
       html_options = options.delete(:html) || {}
       format_with_label(field, options.merge(:field_type => "select"), super(field, choices, options, html_options), &block)
@@ -83,8 +86,14 @@ module FormFu
         tag_output = @template.preserve(tag_output)
       end
 
+      # find label name
+      label_name = options[:label] || field.to_s.humanize
+      options[:separator] ||= default_separator
+      label_name = "#{label_name}#{options.delete(:separator)}"
+      
+      # build output html
       output_html = @template.field_tag(options[:field], [
-          @template.label(@object_name, field, options[:label], :separator => options[:separator] || default_separator),
+          @template.label(@object_name, field, label_name),
           tag_output,
           @template.validation_tag(@object, field),
           block_given? ? @template.capture(&block) : nil
