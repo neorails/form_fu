@@ -3,7 +3,7 @@ module FormFu
   # A form builder that produces tableless, lined-up forms.
   class FormBuilder < ActionView::Helpers::FormBuilder
     # automatically wrap all the standard formbuilder helpers
-     (field_helpers - %w(label radio_button hidden_field text_area)).each do |selector|
+     (field_helpers - %w(label hidden_field radio_button check_box text_area apply_form_for_options!)).each do |selector|
       src = <<-END_SRC
         def #{selector}(field, options = {}, &block)
           format_with_label(field, options.merge(:field_type => "#{selector}"), super(field, purge_custom_tags(options)), &block)
@@ -36,7 +36,7 @@ module FormFu
       # build radio choices html 
       choices_html = ""
       choices.each do |key, value|
-        radio_html = @template.radio_button(field, value)+key
+        radio_html = radio_button(field, value)+key
         
         # wrap radio html in a label (for easier selection)
         choices_html << @template.content_tag(:label, radio_html, :class => "radio-option")
