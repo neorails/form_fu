@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name = 'form_fu'
-  s.version = '0.41'
+  s.version = '0.5'
   s.date = '2008-07-07'
   
   s.summary = "Build Nice DRY Rails Forms"
