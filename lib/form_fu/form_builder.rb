@@ -95,8 +95,8 @@ module FormFu
       output_html = @template.field_tag(options[:field], [
           @template.label(@object_name, field, label_name),
           tag_output,
-          @template.validation_tag(@object, field),
-          block_given? ? @template.capture(&block) : nil
+          block_given? ? @template.capture(&block) : nil,
+          @template.validation_tag(@object, field)
       ].compact.join("\n"))
 
       if block_given?
