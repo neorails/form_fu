@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
   s.name = 'form_fu'
-  s.version = '0.51'
-  s.date = '2008-07-09'
+  s.version = '0.52'
+  s.date = '2008-09-10s'
   
   s.summary = "Build Nice DRY Rails Forms"
   s.description = "FormFu is a Rails plugin that enables you to easily build nice, tableless forms"

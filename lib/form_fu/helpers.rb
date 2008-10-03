@@ -12,6 +12,21 @@ module FormFu
     
     # also work with the more semantic name (build_form_for)
     alias :build_form_for :formfu_for
+
+
+    # Create a form_for block using FormFuBuilder
+    def remote_formfu_for(record_or_name_or_array, *args, &block)  
+      raise ArgumentError, "Missing block" unless block_given?
+      
+      options = args.extract_options!
+      args << options.merge(:builder => FormFu::FormBuilder)
+      remote_form_for(record_or_name_or_array, *args, &block)
+      
+    end
+    
+    # also work with the more semantic name (build_form_for)
+    alias :build_remote_form_for :remote_formfu_for
+
     
     # Create a fields_for block using FormFuBuilder
     def formfu_fields_for(object_or_object_name, *args, &block)
