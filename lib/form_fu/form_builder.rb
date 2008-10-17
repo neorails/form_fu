@@ -15,7 +15,7 @@ module FormFu
     
     alias :text_area_input :text_area
     def text_area(field, options = {}, &block)
-      format_with_label(field, options.merge(:field_type => "text_area", :preserve => true), super(field, purge_custom_tags(options)), &block)
+      format_with_label(field, options.merge(:field_type => "text_area"), super(field, purge_custom_tags(options)), &block)
     end
 
     # wrap the date_select helper
@@ -81,10 +81,6 @@ module FormFu
       # set field options
       options[:field] ||= {}
       options[:field].merge!(:has_error => has_error, :field_type => options[:field_type])
-
-      if options[:preserve]
-        tag_output = @template.preserve(tag_output)
-      end
 
       # find label name
       label_name = options[:label] || field.to_s.humanize
