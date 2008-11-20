@@ -97,7 +97,7 @@ module FormFu
 
       if block_given?
         # concat to page if block was given
-        @template.universal_concat(output_html, block.binding)
+        @template.universal_concat(output_html)
         return nil
       else
         # otherwise return html directly

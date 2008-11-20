@@ -55,7 +55,7 @@ module FormFu
         universal_concat(content_tag(:fieldset, options) do
           (legend_name ? content_tag(:legend, legend_name) : "")+
           universal_capture(&block)
-        end, block.binding)
+        end)
       else
         return content_tag(:fieldset, options) do
           content_tag :legend, legend_name
@@ -85,7 +85,7 @@ module FormFu
         universal_concat(content_tag(:div, options) do
           (label.blank? ? "" : content_tag(:label, label.strip)) +
           universal_capture(&block)
-        end, block.binding)
+        end)
       else
         content_tag(:div, options) do
           (label.blank? ? "" : content_tag(:label, label.strip))+content.to_s
