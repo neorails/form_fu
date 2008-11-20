@@ -1,12 +1,12 @@
 module FormFu
   module Helpers
     # Create a form_for block using FormFuBuilder
-    def formfu_for(record_or_name_or_array, *args, &block)  
+    def formfu_for(*args, &block)  
       raise ArgumentError, "Missing block" unless block_given?
       
       options = args.extract_options!
       args << options.merge(:builder => FormFu::FormBuilder)
-      form_for(record_or_name_or_array, *args, &block)
+      form_for(*args, &block)
       
     end
     
@@ -15,13 +15,12 @@ module FormFu
 
 
     # Create a form_for block using FormFuBuilder
-    def remote_formfu_for(record_or_name_or_array, *args, &block)  
+    def remote_formfu_for(*args, &block)  
       raise ArgumentError, "Missing block" unless block_given?
       
       options = args.extract_options!
       args << options.merge(:builder => FormFu::FormBuilder)
-      remote_form_for(record_or_name_or_array, *args, &block)
-      
+      remote_form_for(*args, &block)
     end
     
     # also work with the more semantic name (build_form_for)

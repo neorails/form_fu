@@ -74,9 +74,12 @@ module FormFu
 
     # format a helper by generating the haml to wrap it in a field_tag and include a label
     def format_with_label(field, options, tag_output, &block)
-      # see if we have an error on the field
-      errors_on = object.send(:errors).send(:on, field)
-      has_error = true unless errors_on.blank?
+      if object and object.errors
+        # see if we have an error on the field
+        has_error = object.errors.on(field).present?
+      else
+        has_error = false
+      end
 
       # set field options
       options[:field] ||= {}
