@@ -91,13 +91,13 @@ module FormFu
       output_html = @template.field_tag(options[:field], [
           @template.label(@object_name, field, label_name),
           tag_output,
-          block_given? ? @template.capture(&block) : nil,
+          block_given? ? @template.universal_capture(&block) : nil,
           @template.validation_tag(@object, field)
       ].compact.join("\n"))
 
       if block_given?
         # concat to page if block was given
-        @template.concat(output_html, block.binding)
+        @template.universal_concat(output_html, block.binding)
         return nil
       else
         # otherwise return html directly

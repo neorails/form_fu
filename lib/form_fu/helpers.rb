@@ -52,9 +52,9 @@ module FormFu
     # wrap content with a fieldset tag with a legend
     def fieldset_tag(legend_name, options = {}, &block)
       if block_given?
-        concat(content_tag(:fieldset, options) do
+        universal_concat(content_tag(:fieldset, options) do
           (legend_name ? content_tag(:legend, legend_name) : "")+
-          capture(&block)
+          universal_capture(&block)
         end, block.binding)
       else
         return content_tag(:fieldset, options) do
@@ -82,9 +82,9 @@ module FormFu
       end
       
       if block_given?
-        concat(content_tag(:div, options) do
+        universal_concat(content_tag(:div, options) do
           (label.blank? ? "" : content_tag(:label, label.strip)) +
-          capture(&block)
+          universal_capture(&block)
         end, block.binding)
       else
         content_tag(:div, options) do
@@ -101,6 +101,22 @@ module FormFu
         content_tag :span, :class => "error-message" do
           [model.errors[attribute]].flatten.join(options[:separator] || ", ").to_s
         end
+      end
+    end
+    
+    def universal_capture(&block)
+      if respond_to?(:is_haml?) and is_haml?
+        capture_haml(&block)
+      else
+        capture(&block)
+      end
+    end
+
+    def universal_concat(html)
+      if haml?
+        haml_concat(html)
+      else
+        concat(html)
       end
     end
     
